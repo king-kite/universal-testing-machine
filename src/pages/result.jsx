@@ -4,6 +4,7 @@ import { Button, Skeleton } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import ResultChart from '../components/chart';
 import routes from '../config/routes';
 
 function Page() {
@@ -60,7 +61,10 @@ function Page() {
 						<Skeleton active />
 					</div>
 				) : (
-					<Result />
+					<>
+						<ResultChart />
+						<Result />
+					</>
 				)}
 			</div>
 		</div>
