@@ -43,31 +43,28 @@ const CustomizedAxisTick = (props) => {
 
 // const tickInterval = 2; // Adjust this value to control the spacing between ticks
 
-const App = () => {
+const Chart = ({ title }) => {
 	return (
-		// <LineChart width={730} height={250} data={data}
-		// 	margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-		// 	<CartesianGrid strokeDasharray="3 3" />
-		// 	<XAxis dataKey="name" />
-		// 	<YAxis />
-		// 	<Tooltip />
-		// 	<Legend />
-		// 	<Line type="monotone" dataKey="pv" stroke="#8884d8" />
-		// 	<Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-		// </LineChart>
-		<div className="w-100">
-			<ResponsiveContainer width="100%" height={350}>
-				<LineChart data={data}>
-					<CartesianGrid stroke="#ccc" vertical={false} />
-					<XAxis dataKey="name" tick={<CustomizedAxisTick />} />
-					<YAxis />
-					<Tooltip />
-					<Legend />
-					<Line type="monotone" dataKey="value" stroke="#8884d8" />
-				</LineChart>
-			</ResponsiveContainer>
+		<div className="mb-4 w-100">
+			{title && (
+				<h3 className="capitalize my-2 text-gray-700 text-base md:my-3 md:text-lg lg:my-4">
+					{title}
+				</h3>
+			)}
+			<div className="w-100">
+				<ResponsiveContainer width="100%" height={350}>
+					<LineChart data={data}>
+						<CartesianGrid stroke="#ccc" vertical={false} />
+						<XAxis dataKey="name" tick={<CustomizedAxisTick />} />
+						<YAxis />
+						<Tooltip />
+						<Legend />
+						<Line type="monotone" dataKey="value" stroke="#8884d8" />
+					</LineChart>
+				</ResponsiveContainer>
+			</div>
 		</div>
 	);
 };
 
-export default App;
+export default Chart;
