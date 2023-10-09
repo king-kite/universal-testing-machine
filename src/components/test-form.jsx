@@ -110,7 +110,7 @@ function FormComponent(props, ref) {
 			>
 				<div className="w-full sm:col-span-3">
 					<div className="mt-5 w-full">
-						<div>
+						<div className="mb-4">
 							<Input
 								label="Name of Material"
 								required
@@ -122,7 +122,7 @@ function FormComponent(props, ref) {
 								value={form.name}
 							/>
 						</div>
-						<div>
+						<div className="mb-4">
 							<Input
 								label="Length of Material (in mm)"
 								id="length"
