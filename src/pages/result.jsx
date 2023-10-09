@@ -1,12 +1,11 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import {
-	RetweetOutlined,
-	VerticalAlignTopOutlined,
-	VerticalAlignBottomOutlined,
-} from '@ant-design/icons';
+import { RetweetOutlined, ToTopOutlined, VerticalAlignBottomOutlined } from '@ant-design/icons';
 
 import ResultChart from '../components/chart';
 // import ResultDetail from '../components/result-detail';
+
+const activeColor = 'bg-primary-700 text-gray-100';
+const inactiveColor = 'bg-white text-primary-700 hover:bg-gray-100';
 
 function Page() {
 	return (
@@ -15,19 +14,25 @@ function Page() {
 
 			<div className="my-2 py-2 grid grid-cols-1 gap-4 w-full sm:grid-cols-2 lg:grid-cols-3">
 				<div className="w-full">
-					<span className="bg-white border border-solid border-primary-700 cursor-pointer duration-500 flex items-center justify-center p-5 rounded-md transition transform text-primary-700 text-xl hover:bg-gray-100 hover:scale-105 sm:text-2xl md:py-6 md:text-4xl lg:py-7 lg:text-5xl">
-						<VerticalAlignTopOutlined />
+					<span
+						className={`${activeColor} border border-solid border-primary-700 cursor-pointer duration-500 flex items-center justify-center p-5 rounded-md transition transform text-xl hover:scale-105 sm:text-2xl md:py-6 md:text-4xl lg:py-7 lg:text-5xl`}
+					>
+						<VerticalAlignBottomOutlined />
 					</span>
 					<h3 className="text-gray-700 text-base text-center mt-2 lg:text-lg">Compression</h3>
 				</div>
 				<div className="w-full">
-					<span className="bg-white border border-solid border-primary-700 cursor-pointer duration-500 flex items-center justify-center p-5 rounded-md transition transform text-primary-700 text-xl hover:bg-gray-100 hover:scale-105 sm:text-2xl md:py-6 md:text-4xl lg:py-7 lg:text-5xl">
-						<VerticalAlignBottomOutlined />
+					<span
+						className={`${inactiveColor} border border-solid border-primary-700 cursor-pointer duration-500 flex items-center justify-center p-5 rounded-md rotate-180 transition transform text-xl hover:scale-105 sm:text-2xl md:py-6 md:text-4xl lg:py-7 lg:text-5xl`}
+					>
+						<ToTopOutlined />
 					</span>
 					<h3 className="text-gray-700 text-base text-center mt-2 lg:text-lg">Tension</h3>
 				</div>
 				<div className="w-full">
-					<span className="bg-white border border-solid border-primary-700 cursor-pointer duration-500 flex items-center justify-center p-5 rounded-md transition transform text-primary-700 text-xl hover:bg-gray-100 hover:scale-105 sm:text-2xl md:py-6 md:text-4xl lg:py-7 lg:text-5xl">
+					<span
+						className={`${inactiveColor} border border-solid border-primary-700 cursor-pointer duration-500 flex items-center justify-center p-5 rounded-md transition transform text-xl hover:scale-105 sm:text-2xl md:py-6 md:text-4xl lg:py-7 lg:text-5xl`}
+					>
 						<RetweetOutlined />
 					</span>
 					<h3 className="text-gray-700 text-base text-center mt-2 lg:text-lg">Torsion</h3>
@@ -40,12 +45,14 @@ function Page() {
 					<h1 className="text-xl mt-2 font-medium text-red-500 sm:text-2xl md:text-3xl">OFF</h1>
 				</div>
 				<div className="bg-white border-2 border-solid border-gray-300 p-4 rounded-lg shadow-lg md:p-5 lg:p-6 w-full">
-					<h6 className="text-sm font-medium text-secondary-500 md:text-base">
-						Extension (Distance)
-					</h6>
+					<h6 className="text-sm font-medium text-secondary-500 md:text-base">Distance</h6>
 					<h1 className="text-xl mt-2 font-medium text-primary-700 sm:text-2xl md:text-3xl">
 						10mm
 					</h1>
+				</div>
+				<div className="bg-white border-2 border-solid border-gray-300 p-4 rounded-lg shadow-lg md:p-5 lg:p-6 w-full">
+					<h6 className="text-sm font-medium text-secondary-500 md:text-base">Extension</h6>
+					<h1 className="text-xl mt-2 font-medium text-primary-700 sm:text-2xl md:text-3xl">0</h1>
 				</div>
 			</div>
 
