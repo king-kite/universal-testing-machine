@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { GroupOutlined, CloseOutlined, HomeOutlined, WindowsOutlined } from '@ant-design/icons';
+import { GroupOutlined, CloseOutlined, HomeOutlined } from '@ant-design/icons';
 import React from 'react';
 
 import { SimpleLink } from './links';
@@ -21,12 +21,6 @@ const Sidebar = ({ setVisible, visible }, ref) => {
 				icon: GroupOutlined,
 				title: 'Test',
 				href: routes.TEST_PAGE,
-				onClick: () => setVisible(false),
-			},
-			{
-				icon: WindowsOutlined,
-				title: 'Result',
-				href: routes.RESULT_PAGE,
 				onClick: () => setVisible(false),
 			},
 		],

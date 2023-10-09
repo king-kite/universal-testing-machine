@@ -12,7 +12,6 @@ import DashboardLayout from './layout/dashboard';
 // Auth
 import Home from './pages/home';
 import Test from './pages/test';
-import Result from './pages/result';
 
 const routes = [
 	{
@@ -32,10 +31,6 @@ const routes = [
 			{
 				path: pageRoutes.TEST_PAGE,
 				element: <Test />,
-			},
-			{
-				path: pageRoutes.RESULT_PAGE,
-				element: <Result />,
 			},
 		],
 		errorElement: <Error />,

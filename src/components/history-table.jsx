@@ -28,7 +28,7 @@ const columns = [
 		accessor: 'length',
 	},
 	{
-		Header: 'Force Required(N)',
+		Header: 'Max Force Required(N)',
 		accessor: 'force',
 	},
 	{
@@ -52,9 +52,18 @@ function HistoryTable({
 
 	const data = React.useMemo(
 		() =>
-			tests.map((test) => ({
-				...test,
-			})),
+			tests.map((test) => {
+				const force = test.forces.reduce(
+					(acc, force) => (force.value > acc ? force.value : acc),
+					0
+				);
+				const time = test.forces.reduce((acc, force) => (force.time > acc ? force.time : acc), 0);
+				return {
+					...test,
+					force,
+					time,
+				};
+			}),
 		[tests]
 	);
 

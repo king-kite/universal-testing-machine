@@ -1,34 +1,14 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import { ExclamationCircleOutlined, PlusOutlined, UndoOutlined } from '@ant-design/icons';
 import { Button, Result, Skeleton } from 'antd';
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Table from '../components/history-table';
 import routes from '../config/routes';
-
-const data = [
-	{
-		sn: 1,
-		date: '2023-08-24',
-		name: 'aluminium',
-		type: 'compression',
-		length: '100',
-		force: '50',
-		extension: '150',
-		time: '20s',
-	},
-];
+import { useGetTestsQuery } from '../store/features/api/tests';
 
 function Page() {
-	// const [data] = React.useState([]);
-	const [isLoading, setIsLoading] = React.useState(true);
-
-	React.useEffect(() => {
-		setTimeout(() => {
-			setIsLoading(false);
-		}, 3000);
-	}, []);
+	const { data, error, refetch, isFetching, isLoading } = useGetTestsQuery();
 
 	return (
 		<div>
@@ -53,9 +33,9 @@ function Page() {
 				<div className="my-2 w-full sm:ml-2 sm:my-0 sm:w-1/2 md:ml-4 md:w-1/3 lg:w-1/4">
 					<Button
 						block
-						// disabled={isFetching}
-						// loading={isFetching}
-						// onClick={refetch}
+						disabled={isFetching}
+						loading={isFetching}
+						onClick={refetch}
 						icon={
 							<span className="mr-2 text-gray-700 text-sm md:text-base">
 								<UndoOutlined />
@@ -67,6 +47,12 @@ function Page() {
 					</Button>
 				</div>
 			</div>
+
+			{error && (
+				<div className="bg-red-200 my-2 p-4 text-sm rounded-md text-red-700 md:text-base">
+					{String(error?.message || 'An error occurred when getting test history.')}
+				</div>
+			)}
 
 			<div className="my-2 py-4">
 				{isLoading ? (
