@@ -1,19 +1,20 @@
 import { ref, onValue, set } from 'firebase/database';
 
-import { db } from '.';
+import { db } from './config';
 import { handleError } from './utils';
 
 // Read the parameters from the realtime database
-export async function readParameters({ ref: dataRef = '', onError, onSuccess }) {
+export async function getData(dataRef = '', options = {}) {
+	const { onError, onSuccess } = options;
 	try {
 		// get reference to data
-		const reference = ref(db, dataRef);
+		const reference = ref(db, '/UTM' + dataRef);
 
 		onValue(reference, (snapshot) => {
 			if (snapshot.exists()) {
 				const value = snapshot.val();
-				onSuccess(value);
-			} else onError({ message: 'Unable to get route data.' });
+				if (onSuccess) onSuccess(value);
+			} else if (onError) onError({ message: 'Unable to get route data.' });
 		});
 	} catch (err) {
 		const error = handleError(err);
@@ -23,11 +24,11 @@ export async function readParameters({ ref: dataRef = '', onError, onSuccess }) 
 }
 
 // Reset the parameters on the realtime database
-export async function resetParameters(dataRef = '', data, options = {}) {
+export async function setData(dataRef = '', data, options = {}) {
 	const { onError, onSuccess } = options;
 	try {
 		// get the reference to the parameters data
-		const reference = ref(db, dataRef);
+		const reference = ref(db, '/UTM' + dataRef);
 
 		// set data on reference
 		await set(reference, data);

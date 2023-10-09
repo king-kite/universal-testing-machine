@@ -1,13 +1,41 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import { RetweetOutlined, ToTopOutlined, VerticalAlignBottomOutlined } from '@ant-design/icons';
+import React from 'react';
 
 import ResultChart from '../components/chart';
 // import ResultDetail from '../components/result-detail';
+import { getData } from '../firebase/database';
 
 const activeColor = 'bg-primary-700 text-gray-100';
 const inactiveColor = 'bg-white text-primary-700 hover:bg-gray-100';
 
+const keys = {
+	clamp1Distance: 'clamp1Distance', // Distance Value
+	clampMotion: 'clampMotion', // Moves the clamp in speicified direction
+	compressiveForce: 'compressiveForce', // -> Value for Compressive Testing
+	tensileForce: 'tensileForce', // -> Value for Tensile Testing
+	testStatus: 'testStatus', // System State i.e. ON/OFF or Start/Stop, 1 -> Start/ON 2 -> Stop/OFF
+	testType: 'testType', // 1 -> Compressive, 2 -> Tensile, 3 -> Torsional
+	torsionalForce: 'torsionalForce', // -> Value for Torsional Testing
+};
+
 function Page() {
+	const [compressiveForm, setCompressiveForce] = React.useState(0);
+	const [tensileForce, setTensileForce] = React.useState(0);
+	const [torsionalForce, setTorsionalForce] = React.useState(0);
+
+	const [clampMotion, setClampMotion] = React.useState(0);
+	const [clampDistance, setClampDistance] = React.useState(0);
+
+	const [testStatus, setTestStatus] = React.useState(0);
+	const [testType, setTestType] = React.useState(0);
+
+	getData('', {
+		onSuccess: (data) => {
+			console.log(data);
+		},
+	});
+
 	return (
 		<div>
 			<h2 className="font-bold my-3 text-primary-500">Test Result</h2>
