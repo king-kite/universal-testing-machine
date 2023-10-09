@@ -121,13 +121,13 @@ function Page() {
 				</div>
 				<div className="bg-white border-2 border-solid border-gray-300 p-4 rounded-lg shadow-lg md:p-5 lg:p-6 w-full">
 					<h6 className="text-sm font-medium text-secondary-500 md:text-base">Distance</h6>
-					<h1 className="text-xl mt-2 font-medium text-primary-700 sm:text-2xl md:text-3xl">
+					<h1 className="text-xl mt-2 font-black text-primary-700 sm:text-2xl md:text-3xl">
 						{clampDistance}mm
 					</h1>
 				</div>
 				<div className="bg-white border-2 border-solid border-gray-300 p-4 rounded-lg shadow-lg md:p-5 lg:p-6 w-full">
 					<h6 className="text-sm font-medium text-secondary-500 md:text-base">Extension</h6>
-					<h1 className="text-xl mt-2 font-medium text-primary-700 sm:text-2xl md:text-3xl">0</h1>
+					<h1 className="text-xl mt-2 font-black text-primary-700 sm:text-2xl md:text-3xl">0mm</h1>
 				</div>
 			</div>
 
