@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import React from 'react';
 import {
 	LineChart,
 	Line,
@@ -10,24 +11,26 @@ import {
 	Legend,
 } from 'recharts';
 
-const names = [];
+import useInterval from '../hooks/useInterval';
 
-for (let i = 0; i <= 120; i++) {
-	names.push(i);
-}
+// const names = [];
 
-const data = names.map((name) => {
-	// Generate a random number between 0 (inclusive) and 1 (exclusive)
-	const randomFraction = Math.random();
+// for (let i = 0; i <= 120; i++) {
+// 	names.push(i);
+// }
 
-	// Scale the random number to be between 0 and 1000
-	const value = Math.floor(randomFraction * 1000);
+// const data = names.map((name) => {
+// 	// Generate a random number between 0 (inclusive) and 1 (exclusive)
+// 	const randomFraction = Math.random();
 
-	return {
-		value,
-		name,
-	};
-});
+// 	// Scale the random number to be between 0 and 1000
+// 	const value = Math.floor(randomFraction * 1000);
+
+// 	return {
+// 		value,
+// 		name,
+// 	};
+// });
 
 const CustomizedAxisTick = (props) => {
 	const { x, y, payload } = props;
@@ -43,7 +46,28 @@ const CustomizedAxisTick = (props) => {
 
 // const tickInterval = 2; // Adjust this value to control the spacing between ticks
 
-const Chart = ({ title }) => {
+const Chart = ({ force, start, title }) => {
+	const [forces, setForces] = React.useState([]);
+
+	const [time, setTime] = React.useState(0);
+
+	const updateForces = React.useCallback(() => {
+		const currentTime = time + 1;
+		setTime(currentTime);
+		setForces((prevState) => [...prevState, { value: force, time: currentTime }]);
+	}, [force, time]);
+
+	const { toggleInterval } = useInterval(updateForces, 1000, { status: 'pause' });
+
+	React.useEffect(() => {
+		if (start) {
+			setTime(0);
+			toggleInterval('play');
+		} else {
+			toggleInterval('pause');
+		}
+	}, [start, toggleInterval]);
+
 	return (
 		<div className="mb-4 w-100">
 			{title && (
@@ -53,7 +77,12 @@ const Chart = ({ title }) => {
 			)}
 			<div className="w-100">
 				<ResponsiveContainer width="100%" height={350}>
-					<LineChart data={data}>
+					<LineChart
+						data={forces.map((force) => ({
+							name: force.time,
+							value: force.value,
+						}))}
+					>
 						<CartesianGrid stroke="#ccc" vertical={false} />
 						<XAxis dataKey="name" tick={<CustomizedAxisTick />} />
 						<YAxis />
