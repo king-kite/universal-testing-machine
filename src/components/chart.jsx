@@ -49,7 +49,7 @@ const CustomizedAxisTick = (props) => {
 const Chart = ({ force, start, title }) => {
 	const [forces, setForces] = React.useState([]);
 
-	const [time, setTime] = React.useState(0);
+	const [time, setTime] = React.useState(-1);
 
 	const updateForces = React.useCallback(() => {
 		const currentTime = time + 1;
@@ -61,7 +61,7 @@ const Chart = ({ force, start, title }) => {
 
 	React.useEffect(() => {
 		if (start) {
-			setTime(0);
+			setTime(-1);
 			toggleInterval('play');
 		} else {
 			toggleInterval('pause');
