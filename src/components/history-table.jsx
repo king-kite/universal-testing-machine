@@ -52,7 +52,7 @@ function HistoryTable({
 
 	const data = React.useMemo(
 		() =>
-			tests.map((test) => {
+			tests.map((test, index) => {
 				const force = test.forces.reduce(
 					(acc, force) => (force.value > acc ? force.value : acc),
 					0
@@ -60,6 +60,7 @@ function HistoryTable({
 				const time = test.forces.reduce((acc, force) => (force.time > acc ? force.time : acc), 0);
 				return {
 					...test,
+					sn: index + 1,
 					force,
 					time,
 				};

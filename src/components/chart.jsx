@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { Button } from 'antd';
 import React from 'react';
 import {
 	LineChart,
@@ -46,7 +47,7 @@ const CustomizedAxisTick = (props) => {
 
 // const tickInterval = 2; // Adjust this value to control the spacing between ticks
 
-const Chart = ({ force, start, title }) => {
+const Chart = ({ force, start, onSave, title }) => {
 	const [forces, setForces] = React.useState([]);
 
 	const [time, setTime] = React.useState(-1);
@@ -92,6 +93,21 @@ const Chart = ({ force, start, title }) => {
 					</LineChart>
 				</ResponsiveContainer>
 			</div>
+			{forces.length > 0 && onSave && (
+				<div className="flex flex-wrap gap-4 items-center justify-end mt-5 w-full">
+					<Button
+						onClick={() =>
+							onSave({
+								forces,
+							})
+						}
+						type="primary"
+						size="large"
+					>
+						Save Result
+					</Button>
+				</div>
+			)}
 		</div>
 	);
 };
